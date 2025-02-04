@@ -1,0 +1,130 @@
+{% include 'adminheader.html'%}
+
+<style type="text/css">
+	
+	.ex1 {
+	background-image: url(/static/images/a.jpg);
+	background-position: center top;
+	background-repeat: no-repeat;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	-webkit-background-size: cover;
+	background-size: cover;
+	min-height: auto;
+}
+.btn {
+	/*background-color: #000000;
+	color: rgba(255, 255, 255, 0.72);
+	*/font-size: 16px;
+	font-weight: 600;
+	border: 0;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	display: inline-block;
+	text-transform: uppercase;
+	border: 1px solid #3a3a3a;
+	margin-top: 20px;
+}
+.table{
+	background-color: rgb(0 0 0 / 52%);
+	width: auto;
+	color: white;
+
+}
+.h1{
+	color: white!important;
+}
+</style>
+
+
+
+<div class="ex1">           
+
+
+
+<center>
+	<form method="post" >
+
+
+
+		{% if data['updatedpt'] %}
+		<br><br><br>
+	<h1 style="color: white">Update Add Department</h1>
+	
+		<table class="table" style="width: 500px">
+			<tr>
+				<th>Department </th>
+				<td><input type="text" name="d" required class="form-control" value="{{data['updatedpt'][0]['department']}}"></td>
+			</tr>
+				<tr>
+				<td align="center" colspan="2"><input type="submit" name="update" value="UPDATE" class="btn btn-success"></td>
+			</tr>
+		</table>
+		{% else %}
+		<br><br><br><br>
+		<h1 style="color: white"> Add Department</h1>
+	
+		<table class="table" style="width: 500px">
+			<tr>
+				<th>Department </th>
+				<td><input type="text" name="d" required class="form-control" ></td>
+			</tr>
+				<td align="center" colspan="2"><input type="submit" name="add" value="ADD" class="btn btn-success"></td>
+			</tr>
+		</table>
+		{% endif %}
+ 		
+
+
+<script> 
+		function printDiv() { 
+			// alert("HAiii");
+			var divContents = document.getElementById("div_print").innerHTML; 
+			var a = window.open('', '', 'height=500, width=500'); 
+			a.document.write(divContents); 
+			a.document.close(); 
+			a.print(); 
+		} 
+	</script> 
+</head> 
+
+<body style="text-align:center;"> 
+
+	<a class="btn btn-warning"  onclick="printDiv()" href="adminmanagedepartment">print</a>
+
+<div id="div_print"> 
+
+					<h1 style="color: white">View Department</h1>
+
+		<table class="table">
+			<tr>
+				<th>Department_id</th>
+				<th>Department</th>
+				<th>Status</th>
+			</tr>
+							{% for row in data['dept'] %}
+
+			<tr>
+				<td>Department{{row['department_id']}}</td>
+				<td>{{row['department']}}</td>
+{% if row['dstatus']=="active"%}
+				<td>
+				<a class="btn btn-warning" href="?action=update&did={{row['department_id']}}">active</a></td>
+				<td><a class="btn btn-danger" href="?action=delete&did={{row['department_id']}}">inactive</a>
+				</td>
+				{%else%}
+					<td>{{row['dstatus']}}</td>
+				{%endif%}
+
+				
+			</tr>
+
+				{% endfor %}
+		</table>
+		</div></body>
+</form>
+</center>
+</div>
+
+{% include 'footer.html'%}

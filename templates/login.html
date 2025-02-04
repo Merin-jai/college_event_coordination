@@ -1,0 +1,56 @@
+{% include 'publicheader.html' %}
+
+<style type="text/css">
+	
+	.ex1 {
+	background-image: url(/static/images/b2.jpg);
+	background-position: center top;
+	background-repeat: no-repeat;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	-webkit-background-size: cover;
+	background-size: cover;
+	min-height: 750px;
+}
+.btn {
+	/*background-color: #000000;
+	color: rgba(255, 255, 255, 0.72);
+	*/font-size: 16px;
+	font-weight: 600;
+	border: 0;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	display: inline-block;
+	text-transform: uppercase;
+	border: 1px solid #3a3a3a;
+	margin-top: 20px;
+}
+
+</style>
+
+
+
+<div class="ex1">           
+<br><br><br><br><br><br><br><br><br>
+<form method="post" style="margin-top: 100px">
+	<center>
+		<h1 style="color: white">LOGIN</h1>
+		<table class="table" style="width: 500px;color: white">
+			<tr>
+				<th>username</th>
+				<td><input type="text" name="un" required="" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>password</th>
+				<td><input type="password" name="pa" required="" class="form-control"></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2"><input type="submit" name="login" value="LOGIN" class="btn btn-success"></td>
+			</tr>
+		</table>
+	</center>
+</form>
+</div>
+
+{% include 'footer.html' %}

@@ -1,0 +1,83 @@
+{% include 'adminheader.html'%}
+<style type="text/css">
+	
+	.ex1 {
+	background-image: url(/static/images/a.jpg);
+	background-position: center top;
+	background-repeat: no-repeat;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	-webkit-background-size: cover;
+	background-size: cover;
+	min-height: auto;
+}
+.btn {
+	/*background-color: #000000;
+	color: rgba(255, 255, 255, 0.72);
+	*/font-size: 16px;
+	font-weight: 600;
+	border: 0;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	display: inline-block;
+	text-transform: uppercase;
+	border: 1px solid #3a3a3a;
+	margin-top: 20px;
+}
+.table{
+	background-color: rgb(0 0 0 / 52%);
+	width: auto;
+	color: white;
+
+}
+.h1{
+	color: white!important;
+}
+</style>
+
+
+
+<div class="ex1">           
+<br><br><br>
+
+<script> 
+		function printDiv() { 
+			// alert("HAiii");
+			var divContents = document.getElementById("div_print").innerHTML; 
+			var a = window.open('', '', 'height=500, width=500'); 
+			a.document.write(divContents); 
+			a.document.close(); 
+			a.print(); 
+		} 
+	</script> 
+</head> 
+
+<body style="text-align:center;"> 
+			
+	<a class="btn btn-warning"  onclick="printDiv()" href="adminviewfacility">print</a>
+
+<div id="div_print"> 
+
+
+<center>
+	<h1>View Facility</h1>
+	<form method="post">
+		<table class="table">
+			<tr>
+				<th>Slno</th>
+				<th>Facility Name</th>
+				<th>Image</th>
+			</tr>
+				{% for row in data['faci'] %}			<tr>
+
+				<td>{{loop.index}}</td>
+				<td>{{row['fname']}}</td>
+				<td><img src="/{{row['image']}}" style="width: 100px;height:100px"></td>
+				{% endfor %}			</tr>
+
+		</table></div>
+	</form>
+</center>
+</div>
+{% include 'footer.html'%}

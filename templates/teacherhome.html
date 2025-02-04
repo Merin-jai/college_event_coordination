@@ -1,0 +1,23 @@
+{% include 'teacherheader.html'%}
+
+
+
+<body>
+<!-- header section -->
+<section class="banner" role="banner" id="banner">
+  <!-- banner text -->
+  <div class="container">
+    <div class="col-md-10">
+      <div class="banner-text text-center">
+        	{% for row in data['tea']%}
+        <h1>WELCOME {{row['firstname']}}  {{row['lastname']}}</h1>
+        {% endfor%}
+<!--         <p>Live rocking music</p> 
+ -->    <div class="countdown styled"></div>
+    </div>
+      <!-- banner text --> 
+    </div>
+  </div>
+</section>
+<!-- header section --> 
+{% include 'footer.html' %}

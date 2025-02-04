@@ -1,0 +1,90 @@
+{% include 'teacherheader.html'%}
+
+<style type="text/css">
+	
+	.ex1 {
+	background-image: url(/static/images/a.jpg);
+	background-position: center top;
+	background-repeat: no-repeat;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	-webkit-background-size: cover;
+	background-size: cover;
+	min-height: auto;
+}
+.btn {
+	/*background-color: #000000;
+	color: rgba(255, 255, 255, 0.72);
+	*/font-size: 16px;
+	font-weight: 600;
+	border: 0;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	display: inline-block;
+	text-transform: uppercase;
+	border: 1px solid #3a3a3a;
+	margin-top: 20px;
+}
+.table{
+	background-color: rgb(0 0 0 / 52%);
+	width: auto;
+	color: white;
+
+}
+.h1{
+	color: white!important;
+}
+</style>
+
+
+
+<div class="ex1">           
+<br><br><br>
+
+
+
+<center>
+	<form method="post" style="">
+
+
+
+	<h1> Edit Profile</h1>
+		{% for row in data['stud']%}
+		<table class="table" style="width: 500px">
+			<tr>
+				<th>First Name</th>
+				<td><input type="text" name="f" required  class="form-control" value="{{row['firstname']}}" ></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td><input type="text" name="l" required class="form-control" value="{{row['lastname']}}"></td>
+			</tr>
+			<tr>
+				<th>Place</th>
+				<td><input type="text" name="pl" required class="form-control" value="{{row['place']}}"  ></td>
+			</tr>
+			<tr>
+				<th>Phone</th>
+				<td><input type="text" name="ph" required pattern="[0-9]{10}" class="form-control" value="{{row['phone']}}" ></td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><input type="email" name="e" required class="form-control" value="{{row['email']}}" ></td>
+			</tr>
+			<tr>
+				<th>Designation</th>
+				<td><input type="text" name="de" required class="form-control" value="{{row['designation']}}" ></td>
+			</tr>
+			
+			<tr>
+				<td align="center" colspan="2"><input type="submit" name="update" value="EDIT" class="btn btn-success"></td>
+			</tr>
+		</table>
+	{%endfor%}
+
+</form>
+</center>
+</div>
+
+{% include 'footer.html'%}

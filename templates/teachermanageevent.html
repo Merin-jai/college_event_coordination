@@ -1,0 +1,130 @@
+{% include 'teacherheader.html'%}
+<style type="text/css">
+	
+	.ex1 {
+	background-image: url(/static/images/a.jpg);
+	background-position: center top;
+	background-repeat: no-repeat;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	-webkit-background-size: cover;
+	background-size: cover;
+	min-height: auto;
+}
+.btn {
+	/*background-color: #000000;
+	color: rgba(255, 255, 255, 0.72);
+	*/font-size: 16px;
+	font-weight: 600;
+	border: 0;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	display: inline-block;
+	text-transform: uppercase;
+	border: 1px solid #3a3a3a;
+	margin-top: 20px;
+}
+.table{
+	background-color: rgb(0 0 0 / 52%);
+	width: auto;
+	color: white;
+
+}
+.h1{
+	color: white!important;
+}
+</style>
+
+
+
+<div class="ex1">           
+<br><br><br>
+
+<center>
+	<form method="post" style="">
+
+
+
+		{% if data['updateevent'] %}
+	<h1>Update Add Event</h1>
+	
+		<table class="table" style="width: 500px">
+			<tr>
+				<th>Event </th>
+				<td><input type="text" name="e" required class="form-control" value="{{data['updateevent'][0]['event']}}"></td>
+			</tr>
+			<tr>
+				<th>Details</th>
+				<td><input type="text" name="d" required class="form-control" value="{{data['updateevent'][0]['details']}}"></td>
+			</tr>
+			<tr>
+				<th>Event Date</th>
+				<td><input type="date" name="ed" required class="form-control" value="{{data['updateevent'][0]['edate']}}"></td>
+			</tr>
+			<tr>
+				<th>Event Time</th>
+				<td><input type="text" name="et" required class="form-control" value="{{data['updateevent'][0]['etime']}}"></td>
+			</tr>
+				<tr>
+				<td align="center" colspan="2"><input type="submit" name="update" value="UPDATE" class="btn btn-success"></td>
+			</tr>
+		</table>
+		{% else %}
+		<h1> Add Event</h1>
+	
+		<table class="table" style="width: 500px">
+			<tr>
+				<th>Event </th>
+				<td><input type="text" name="e" required class="form-control" ></td>
+			</tr>
+			<tr>
+				<th>Details</th>
+				<td><input type="text" name="d" required class="form-control" ></td>
+			</tr>
+			<tr>
+				<th>Event Date</th>
+				<td><input type="date" name="ed" required class="form-control" ></td>
+			</tr>
+			<tr>
+				<th>Event Time</th>
+				<td><input type="text" name="et" required class="form-control" ></td>
+			</tr>	<td align="center" colspan="2"><input type="submit" name="register" value="ADD" class="btn btn-success"></td>
+			</tr>
+		</table>
+		{% endif %}
+ 		
+		<h1 style="">View Event</h1>
+		<table class="table">
+			<tr>
+				<th>Slno</th>
+				<th>Teacher Name</th>
+				<th>Event</th>
+				<th>Details</th>
+				<th>Event Date</th>
+				<th>Event Time</th>
+			</tr>
+			{% for row in data['events'] %}
+
+			<tr>
+				<td>{{loop.index}}</td>
+				<td>{{row['firstname']}} {{row['lastname']}}</td>
+				<td>{{row['event']}}</td>
+				<td>{{row['details']}}</td>
+				<td>{{row['edate']}}</td>
+				<td>{{row['etime']}}</td>
+				<td><a class="btn btn-success" href="teacherbookresource?e_id={{row['event_id']}}">book resource</a></td>
+<td><a class="btn btn-success" href="teacherbookfacility?e_id={{row['event_id']}}">book facility</a></td>
+
+<td><a class="btn btn-success" href="teacherviewresources?e_id={{row['event_id']}}">view resource</a></td>
+<td><a class="btn btn-success" href="teacherviewfacilities?e_id={{row['event_id']}}">view facility</a></td>
+
+			</tr>
+			{% endfor %}
+
+		</table>
+</form>
+</center>
+
+</div>
+{% include 'footer.html'%}

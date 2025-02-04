@@ -1,0 +1,246 @@
+{% include 'adminheader.html'%}
+<style type="text/css">
+	
+	.ex1 {
+	background-image: url(/static/images/a.jpg);
+	background-position: center top;
+	background-repeat: no-repeat;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	-webkit-background-size: cover;
+	background-size: cover;
+	min-height: auto;
+}
+.btn {
+	/*background-color: #000000;
+	color: rgba(255, 255, 255, 0.72);
+	*/font-size: 16px;
+	font-weight: 600;
+	border: 0;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	display: inline-block;
+	text-transform: uppercase;
+	border: 1px solid #3a3a3a;
+	margin-top: 20px;
+}
+.table{
+	background-color: rgb(0 0 0 / 52%);
+	width: auto;
+	color: white;
+
+}
+.h1{
+	color: white!important;
+}
+</style>
+
+
+
+<div class="ex1">           
+
+
+<center>
+	<form method="post" style="">
+
+
+
+		{% if data['updateteacher'] %}
+		<br><br>
+	<h1>Update Add Teacher</h1>
+	
+		<table class="table" style="width: 500px">
+			<tr>
+				<th>Department</th>
+				<td>
+					<select name="d_id" class="form-control" required>
+						{% for row in data['dept']%}
+						<option value="{{row['department_id']}}">{{row['department']}}</option>
+						{% endfor %}
+
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>First Name</th>
+				<td><input type="text" name="f" required class="form-control" value="{{data['updateteacher'][0]['firstname']}}"></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td><input type="text" name="l" required class="form-control" value="{{data['updateteacher'][0]['lastname']}}"></td>
+			</tr>
+			<tr>
+				<th>Place</th>
+				<td><input type="text" name="pl" required class="form-control" value="{{data['updateteacher'][0]['place']}}"></td>
+			</tr>
+			<tr>
+				<th>Phone</th>
+				<td><input type="text" name="ph" required class="form-control" value="{{data['updateteacher'][0]['phone']}}"></td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><input type="email" name="e" required class="form-control" value="{{data['updateteacher'][0]['email']}}"></td>
+			</tr>
+			
+			<tr>
+				<th>Desgination</th>
+				<td><input type="text" name="desg" required class="form-control" value="{{data['updateteacher'][0]['designation']}}"></td>
+			</tr>
+<!-- <tr>
+				<th>Username</th>
+				<td><input type="text" name="u" required class="form-control"></td>
+			<tr>
+				<th>Password</th>
+				<td><input type="text" name="p" required class="form-control"></td>
+			</tr>
+ -->			<tr>
+				<td align="center" colspan="2"><input type="submit" name="update" value="UPDATE" class="btn btn-success"></td>
+			</tr>
+		</table>
+		{% else %}
+		<br><br>
+		<h1> Add Teacher</h1>
+	
+		<table class="table" style="width: 500px">
+			<tr>
+				<th>Department</th>
+				<td>
+					<select name="d_id" class="form-control"  required="">
+						{% for row in data['dept']%}
+						<option value="{{row['department_id']}}">{{row['department']}}</option>
+						{% endfor %}
+
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>First Name</th>
+				<td><input type="text" name="f" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td><input type="text" name="l" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Place</th>
+				<td><input type="text" name="pl" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Phone</th>
+				<td><input type="text" name="ph" pattern="[0-9]{10}" required class="form-control"></td>
+			</tr>
+			
+			<tr>
+				<th>Desgination</th>
+				<td><input type="text" name="desg" required class="form-control"></td>
+			</tr>
+
+ 			<tr>
+				<th>Email</th>
+				<td><input type="email" name="e" required class="form-control"></td>
+			</tr>
+				<th>Password</th>
+				<td><input type="text" name="p" required class="form-control"></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2"><input type="submit" name="register" value="ADD" class="btn btn-success"></td>
+			</tr>
+		</table>
+		{% endif %}
+ 		</form>
+
+<script> 
+		function printDiv() { 
+			// alert("HAiii");
+			var divContents = document.getElementById("div_print").innerHTML; 
+			var a = window.open('', '', 'height=500, width=500'); 
+			a.document.write(divContents); 
+			a.document.close(); 
+			a.print(); 
+		} 
+	</script> 
+</head> 
+
+<body style="text-align:center;"> 
+
+	<a class="btn btn-warning"  onclick="printDiv()" href="adminmanageteacher">print</a>
+
+<div id="div_print"> 
+
+					<h1 style="color: white">View Teacher</h1>
+					<form method="post">
+<table>
+	<tr>
+		<td><input type="text" name="sname" placeholder="search designation or department" style="width: 500px" class="form-control"></td>
+		<td><input type="submit" name="search" value="search" class="btn btn-info"></td>
+	</tr>
+</table>
+		<table class="table" style="width: auto;">
+			<tr>
+				<th>Teacher_id</th>
+				<th>Department</th>
+				<th>Teacher Name</th>
+
+<!-- 				<th>Last Name</th>
+ -->
+				<th>Place</th>
+
+				<th>Phone</th>
+
+				<th>Email</th>
+
+				<th>Designation</th>
+				<th>	Status</th>
+			</tr>
+	{% if data['search']%}
+
+			{% for row in data['search']%}
+			<tr>
+				<td>Teacher{{row['teacher_id']}}</td>
+
+				<td>{{row['department']}}</td>
+				<td>{{row['firstname']}} {{row['lastname']}}</td>
+<!-- 				<td>{{row['lastname']}}</td>
+ -->				<td>{{row['place']}}</td>
+				<td>{{row['phone']}}</td>
+				<td>{{row['email']}}</td>
+				<td>{{row['designation']}}</td>
+				<td>
+				<a class="btn btn-warning" href="?action=update&tid={{row['teacher_id']}}&lid={{row['username']}}">active</a></td>
+				<td><a class="btn btn-danger" href="?action=delete&tid={{row['teacher_id']}}&lid={{row['username']}}">inactive</a>
+				</td>
+			</tr>
+			{%endfor%}
+	{%else%}
+				{% for row in data['teach']%}
+			<tr>
+				<td>Teacher{{row['teacher_id']}}</td>
+				<td>{{row['department']}}</td>
+				<td>{{row['firstname']}} {{row['lastname']}}</td>
+<!-- 				<td>{{row['lastname']}}</td>
+ -->				<td>{{row['place']}}</td>
+				<td>{{row['phone']}}</td>
+				<td>{{row['email']}}</td>
+				<td>{{row['designation']}}</td>
+				{%if row['tstatus']=="active"%}
+				<td>
+				<a class="btn btn-warning" href="?action=update&tid={{row['teacher_id']}}&lid={{row['username']}}">active</a></td>
+				<td><a class="btn btn-danger" href="?action=delete&tid={{row['teacher_id']}}&lid={{row['username']}}">inactive</a>
+				</td>
+				{%else%}
+					<td>{{row['tstatus']}}</td>
+								{%endif%}
+
+			</tr>
+				{% endfor %}
+			
+
+	{%endif%}
+		</table></div>
+
+</form>
+</center>
+</div>
+
+{% include 'footer.html'%}

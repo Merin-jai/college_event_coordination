@@ -1,0 +1,119 @@
+{% include 'adminheader.html'%}
+<style type="text/css">
+	
+	.ex1 {
+	background-image: url(/static/images/a.jpg);
+	background-position: center top;
+	background-repeat: no-repeat;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	-webkit-background-size: cover;
+	background-size: cover;
+	min-height: auto;
+}
+.btn {
+	/*background-color: #000000;
+	color: rgba(255, 255, 255, 0.72);
+	*/font-size: 16px;
+	font-weight: 600;
+	border: 0;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	display: inline-block;
+	text-transform: uppercase;
+	border: 1px solid #3a3a3a;
+	margin-top: 20px;
+}
+.table{
+	background-color: rgb(0 0 0 / 52%);
+
+}
+</style>
+
+
+
+<div class="ex1">           
+
+<center>
+	<form method="post" >
+
+<br><br><br><br>
+
+		{% if data['updateclub'] %}
+	<h1 style="color: white">Update Add club</h1>
+	
+		<table class="table" style="width: 500px;color: white">
+			<tr>
+				<th>club </th>
+				<td><input type="text" name="d" required class="form-control" value="{{data['updateclub'][0]['club']}}"></td>
+			</tr>
+				<tr>
+				<td align="center" colspan="2"><input type="submit" name="update" value="UPDATE" class="btn btn-success"></td>
+			</tr>
+		</table>
+		{% else %}
+		<h1 style="color: white"> Add club</h1>
+	
+		<table class="table" style="width: 500px;color: white">
+			<tr>
+				<th>club </th>
+				<td><input type="text" name="d" required  class="form-control" ></td>
+			</tr>
+				<td align="center" colspan="2"><input type="submit" name="add" value="ADD" class="btn btn-success"></td>
+			</tr>
+		</table>
+		{% endif %}
+ 		
+<script> 
+		function printDiv() { 
+			// alert("HAiii");
+			var divContents = document.getElementById("div_print").innerHTML; 
+			var a = window.open('', '', 'height=500, width=500'); 
+			a.document.write(divContents); 
+			a.document.close(); 
+			a.print(); 
+		} 
+	</script> 
+</head> 
+
+<body style="text-align:center;"> 
+
+
+	<a class="btn btn-warning"  onclick="printDiv()" href="adminmanageclub">print</a>
+
+<div id="div_print"> 
+
+
+					<h1 style="color: white">View Club</h1>
+
+
+		<table class="table" style="width: 500px;color: white">
+			<tr>
+				<th>Club_id</th>
+				<th>club</th>
+				<th>Status</th>
+			</tr>
+							{% for row in data['clubs'] %}
+
+			<tr>
+				<td>Club{{row['club_id']}}</td>
+				<td>{{row['club']}}</td>
+				{% if row['cstatus']=="active"%}
+				<td>
+				<a class="btn btn-warning" href="?action=update&cid={{row['club_id']}}">inactive</a></td>
+				<td><a class="btn btn-danger" href="?action=delete&cid={{row['club_id']}}">active</a>
+				</td>
+				{%else%}
+					<td>{{row['cstatus']}}</td>
+				{%endif%}
+
+			</tr>
+
+				{% endfor %}
+		</table></div>
+</form>
+</center>
+</div>
+
+{% include 'footer.html'%}
